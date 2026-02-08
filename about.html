@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>About | TORR Engineering</title>
     <meta name="description" content="Learn about TORR Engineering - Authorized Dealer for Atlas Copco, Idex Sandpiper, Idex Pulsafeeder & Idex Cognito. Engineering Reliability since 2022.">
     
@@ -47,6 +47,14 @@
                     borderRadius: {
                         '3xl': '1.5rem',
                         '4xl': '2rem',
+                    },
+                    screens: {
+                        'xs': '375px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                        '2xl': '1536px',
                     }
                 }
             }
@@ -81,18 +89,22 @@
             transition: all 0.2s ease-in-out;
         }
         
-        .group:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        @media (min-width: 1024px) {
+            .group:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
         }
 
         /* Card Hover Effects */
-        .premium-card-img {
-            transition: transform 0.7s ease;
-        }
-        .premium-card:hover .premium-card-img {
-            transform: scale(1.1);
+        @media (min-width: 768px) {
+            .premium-card-img {
+                transition: transform 0.7s ease;
+            }
+            .premium-card:hover .premium-card-img {
+                transform: scale(1.1);
+            }
         }
 
         /* Typography */
@@ -114,30 +126,34 @@
 
         /* Custom Curve for Hero Section matches reference */
         .hero-curve {
-            border-bottom-left-radius: 80px;
+            border-bottom-left-radius: 40px; /* Mobile default */
         }
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .hero-curve {
-                border-bottom-left-radius: 40px;
+                border-bottom-left-radius: 80px;
             }
+        }
+
+        /* Input font size fix for iOS to prevent zoom */
+        input, textarea, select {
+            font-size: 16px !important;
         }
     </style>
 </head>
-<body class="bg-white text-zinc-900 font-sans antialiased overflow-x-hidden w-full">
+<body class="bg-white text-zinc-900 font-sans antialiased overflow-x-hidden w-full selection:bg-brand-red selection:text-white">
 
     <!-- NAVIGATION -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5 bg-transparent border-b border-white/10">
-        <!-- Replaced container with w-full max-w-[1400px] -->
-        <div class="w-full max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-3 md:py-5 bg-transparent border-b border-white/10">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6 flex justify-between items-center">
             
             <!-- Logo -->
-            <a href="index.html" class="flex items-center group cursor-pointer gap-3">
+            <a href="index.html" class="flex items-center group cursor-pointer gap-2 md:gap-3 z-50">
                 <div class="flex flex-col">
                     <div id="logo-text" class="drop-shadow-md transition-colors duration-300 flex items-center">
                         <img src="logo.png" alt="TORR Logo" class="h-8 md:h-10 w-auto object-contain">
                     </div>
                 </div>
-                <div id="logo-sub" class="hidden sm:block ml-2 text-sm md:text-base font-medium border-l-2 pl-2 tracking-wide uppercase text-zinc-100 border-brand-red drop-shadow-md transition-colors duration-300">
+                <div id="logo-sub" class="hidden xs:block ml-1 md:ml-2 text-xs md:text-base font-medium border-l-2 pl-2 tracking-wide uppercase text-zinc-100 border-brand-red drop-shadow-md transition-colors duration-300">
                     Engineering
                 </div>
             </a>
@@ -174,70 +190,72 @@
                 </div>
 
                 <a href="contact.html" class="nav-link text-sm font-semibold uppercase tracking-wide text-white hover:text-brand-red transition-colors duration-200">Contact</a>
-                
-                </a>
             </div>
 
             <!-- Mobile Toggle -->
-            <div class="lg:hidden">
-                <button id="mobile-menu-btn" class="p-2 text-white transition-colors duration-300">
+            <div class="lg:hidden z-50">
+                <button id="mobile-menu-btn" class="p-2 text-white transition-colors duration-300 focus:outline-none" aria-label="Toggle menu">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col h-full pt-24 px-8 space-y-6 relative overflow-y-auto">
-                <button id="close-menu-btn" class="absolute top-6 right-6 text-zinc-900 p-2">
-                    <i data-lucide="x" class="w-8 h-8"></i>
+        <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full pt-24 px-6 space-y-6 relative overflow-y-auto w-full">
+                <button id="close-menu-btn" class="absolute top-4 right-4 text-zinc-900 p-2 focus:outline-none bg-gray-100 rounded-full" aria-label="Close menu">
+                    <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
 
-                <a href="index.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Home</a>
-                <a href="about.html" class="mobile-link text-xl font-bold text-brand-red border-b border-zinc-100 pb-4">About</a>
-                <a href="partners.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Our Partners</a>
+                <div class="flex flex-col gap-2">
+                    <a href="index.html" class="mobile-link text-lg font-bold text-zinc-900 border-b border-zinc-100 py-3 block active:text-brand-red">Home</a>
+                    <a href="about.html" class="mobile-link text-lg font-bold text-brand-red border-b border-zinc-100 py-3 block active:text-brand-red">About</a>
+                    <a href="partners.html" class="mobile-link text-lg font-bold text-zinc-900 border-b border-zinc-100 py-3 block active:text-brand-red">Our Partners</a>
+                </div>
                 
                 <div class="pb-4 border-b border-zinc-100">
-                    <p class="text-sm font-bold text-zinc-400 uppercase mb-4">Products</p>
-                    <a href="atlas-copco-vacuum-solutions.html" class="block text-lg font-medium text-zinc-800 mb-3 pl-4 border-l-2 border-transparent hover:border-brand-red">Atlas Copco Vacuum Solutions</a>
-                    <a href="idex-sandpiper.html" class="block text-lg font-medium text-zinc-800 mb-3 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Sandpiper</a>
-                    <a href="idex-pulsafeeder.html" class="block text-lg font-medium text-zinc-800 mb-3 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Pulsafeeder</a>
-                    <a href="idex-cognito.html" class="block text-lg font-medium text-zinc-800 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Cognito</a>
+                    <p class="text-xs font-bold text-zinc-400 uppercase mb-4 tracking-wider">Products</p>
+                    <div class="space-y-3">
+                        <a href="atlas-copco-vacuum-solutions.html" class="block text-base font-medium text-zinc-800 pl-3 border-l-2 border-zinc-200 hover:border-brand-red active:text-brand-red">Atlas Copco Vacuum</a>
+                        <a href="idex-sandpiper.html" class="block text-base font-medium text-zinc-800 pl-3 border-l-2 border-zinc-200 hover:border-brand-red active:text-brand-red">Idex Sandpiper</a>
+                        <a href="idex-pulsafeeder.html" class="block text-base font-medium text-zinc-800 pl-3 border-l-2 border-zinc-200 hover:border-brand-red active:text-brand-red">Idex Pulsafeeder</a>
+                        <a href="idex-cognito.html" class="block text-base font-medium text-zinc-800 pl-3 border-l-2 border-zinc-200 hover:border-brand-red active:text-brand-red">Idex Cognito</a>
+                    </div>
                 </div>
 
-                <a href="contact.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Contact</a>
+                <a href="contact.html" class="mobile-link text-lg font-bold text-zinc-900 border-b border-zinc-100 py-3 block active:text-brand-red">Contact</a>
                 
-                <div class="mt-auto mb-12">
-                    <p class="text-sm text-zinc-500">Need assistance?</p>
-                    <a href="tel:+919606911699" class="text-xl font-bold text-brand-red">+91 96069 11699</a>
+                <div class="mt-auto mb-8 pb-8">
+                    <p class="text-sm text-zinc-500 mb-1">Need assistance?</p>
+                    <a href="tel:+919606911699" class="text-xl font-bold text-brand-red block">+91 96069 11699</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="relative min-h-[500px] flex items-center overflow-hidden bg-[#0a0a0a] hero-curve w-full">
+    <section class="relative min-h-[60vh] md:min-h-[500px] flex items-center overflow-hidden bg-[#0a0a0a] hero-curve w-full">
         <!-- Abstract Background -->
         <div class="absolute inset-0 z-0 w-full h-full">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200" alt="Corporate Architecture" class="w-full h-full object-cover opacity-40">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
         </div>
 
-        <div class="w-full max-w-[1400px] mx-auto relative z-10 px-6 pt-20">
+        <div class="w-full max-w-[1400px] mx-auto relative z-10 px-4 md:px-6 pt-24 md:pt-20">
             <div class="max-w-4xl animate-fade-in-up">
 
-                <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                <h1 class="font-display text-3xl md:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
                     About <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">TORR Engineering</span>
                 </h1>
-                <h2 class="text-2xl md:text-3xl text-zinc-400 font-light mb-8">
+                <h2 class="text-xl md:text-3xl text-zinc-400 font-light mb-6 md:mb-8">
                     Engineering Reliability. Delivering Trust.
                 </h2>
                 
-                <p class="text-lg md:text-xl text-gray-300 mb-10 font-light leading-relaxed max-w-2xl">
+                <p class="text-base md:text-xl text-gray-300 mb-8 md:mb-10 font-light leading-relaxed max-w-2xl">
                     We bridge the gap between world-class manufacturing and industrial application. Your dedicated partner for premium vacuum, fluid, and piping infrastructure.
                 </p>
 
-                <a href="contact.html" class="group px-8 py-3.5 bg-brand-red hover:bg-red-700 text-white font-bold rounded-full transition-all shadow-lg inline-flex items-center gap-2">
+                <a href="contact.html" class="group px-6 md:px-8 py-3.5 bg-brand-red hover:bg-red-700 text-white font-bold rounded-full transition-all shadow-lg inline-flex items-center gap-2 text-sm md:text-base">
                     Contact Our Team <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
@@ -245,17 +263,17 @@
     </section>
 
     <!-- COMPANY OVERVIEW -->
-    <section class="py-24 bg-gray-50 w-full">
-        <div class="w-full max-w-[1400px] mx-auto px-6">
+    <section class="py-12 md:py-24 bg-gray-50 w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6">
             <!-- White rounded card -->
-            <div class="bg-white rounded-[40px] shadow-card border border-gray-100 overflow-hidden relative">
+            <div class="bg-white rounded-2xl md:rounded-[40px] shadow-card border border-gray-100 overflow-hidden relative">
                 <!-- Decorative Red Accent -->
-                <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red/5 rounded-bl-[100px] pointer-events-none"></div>
+                <div class="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-brand-red/5 rounded-bl-[60px] md:rounded-bl-[100px] pointer-events-none"></div>
                 
-                <div class="flex flex-col lg:flex-row items-center">
-                    <div class="lg:w-1/2 p-10 md:p-16">
-                        <h2 class="font-display text-3xl md:text-4xl font-bold text-zinc-900 mb-8">Who We Are</h2>
-                        <div class="prose prose-lg text-zinc-600 space-y-6">
+                <div class="flex flex-col lg:flex-row items-stretch">
+                    <div class="lg:w-1/2 p-6 md:p-10 lg:p-16 order-2 lg:order-1">
+                        <h2 class="font-display text-2xl md:text-4xl font-bold text-zinc-900 mb-6 md:mb-8">Who We Are</h2>
+                        <div class="prose prose-base md:prose-lg text-zinc-600 space-y-4 md:space-y-6">
                             <p class="leading-relaxed">
                                 Incorporated in 2022, <strong class="text-zinc-900">TORR ENGINEERING</strong> has rapidly established itself as a premier authorized partner for global industrial leaders. We proudly represent <strong class="text-brand-red">Atlas Copco Vacuum Solutions</strong>, <strong class="text-brand-red">Idex Sandpiper</strong>, <strong class="text-brand-red">Idex Pulsafeeder</strong>, and <strong class="text-brand-red">Idex Cognito</strong>.
                             </p>
@@ -264,8 +282,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="lg:w-1/2 h-[400px] lg:h-[600px] w-full relative">
-                        <img src="images/about-page/1.png" alt="Industrial Engineering" class="w-full h-full object-cover">
+                    <div class="lg:w-1/2 h-[250px] md:h-[400px] lg:h-auto w-full relative order-1 lg:order-2">
+                        <img src="images/about-page/1.png" loading="lazy" alt="Industrial Engineering" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent lg:bg-gradient-to-l"></div>
                     </div>
                 </div>
@@ -274,132 +292,132 @@
     </section>
 
     <!-- WHY CHOOSE TORR -->
-    <section class="py-24 bg-white w-full">
-        <div class="w-full max-w-[1400px] mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-zinc-900 mb-4">Why Choose TORR?</h2>
-                <p class="text-zinc-600 max-w-2xl mx-auto text-lg">We deliver more than just products; we deliver engineering excellence and peace of mind.</p>
+    <section class="py-12 md:py-24 bg-white w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6">
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="font-display text-2xl md:text-4xl font-bold text-zinc-900 mb-3 md:mb-4">Why Choose TORR?</h2>
+                <p class="text-zinc-600 max-w-2xl mx-auto text-base md:text-lg">We deliver more than just products; we deliver engineering excellence and peace of mind.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 <!-- Feature 1 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="shield-check" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="shield-check" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Trusted Global Brands</h3>
-                    <p class="text-zinc-600 leading-relaxed">Direct authorized dealer for industry giants like Atlas Copco and Kirloskar, ensuring 100% authenticity.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Trusted Global Brands</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">Direct authorized dealer for industry giants like Atlas Copco and Kirloskar, ensuring 100% authenticity.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="wrench" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="wrench" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Technical Expertise</h3>
-                    <p class="text-zinc-600 leading-relaxed">Our engineering team provides deep technical insights to select the perfect equipment for your specific application.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Technical Expertise</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">Our engineering team provides deep technical insights to select the perfect equipment for your specific application.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="clock" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="clock" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Fast Support</h3>
-                    <p class="text-zinc-600 leading-relaxed">Responsive sales and support team dedicated to minimizing downtime and accelerating your projects.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Fast Support</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">Responsive sales and support team dedicated to minimizing downtime and accelerating your projects.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="award" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="award" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Genuine Products</h3>
-                    <p class="text-zinc-600 leading-relaxed">Guaranteed original equipment and spares directly from the manufacturers with full warranty support.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Genuine Products</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">Guaranteed original equipment and spares directly from the manufacturers with full warranty support.</p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="settings-2" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="settings-2" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Customized Solutions</h3>
-                    <p class="text-zinc-600 leading-relaxed">Tailored piping and pumping systems designed to fit your factory layout and operational requirements.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Customized Solutions</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">Tailored piping and pumping systems designed to fit your factory layout and operational requirements.</p>
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
-                    <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="users" class="w-7 h-7 text-brand-red"></i>
+                <div class="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-gray-50 border border-gray-100 hover:border-brand-red/30 transition-colors group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="w-6 h-6 md:w-7 md:h-7 text-brand-red"></i>
                     </div>
-                    <h3 class="font-display text-xl font-bold text-zinc-900 mb-3">Long Term Partnership</h3>
-                    <p class="text-zinc-600 leading-relaxed">We don't just sell; we build lasting relationships by ensuring your systems run efficiently for years.</p>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-zinc-900 mb-2 md:mb-3">Long Term Partnership</h3>
+                    <p class="text-sm md:text-base text-zinc-600 leading-relaxed">We don't just sell; we build lasting relationships by ensuring your systems run efficiently for years.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PARTNER BRANDS SECTION -->
-    <section class="py-24 bg-gray-50 w-full">
-        <div class="w-full max-w-[1400px] mx-auto px-6">
-            <div class="mb-12">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-zinc-900 mb-4">Our Premium Partners</h2>
-                <div class="w-20 h-1 bg-brand-red rounded-full"></div>
+    <section class="py-12 md:py-24 bg-gray-50 w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6">
+            <div class="mb-8 md:mb-12">
+                <h2 class="font-display text-2xl md:text-4xl font-bold text-zinc-900 mb-3 md:mb-4">Our Premium Partners</h2>
+                <div class="w-16 md:w-20 h-1 bg-brand-red rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <!-- Atlas Copco -->
-                <div class="group bg-white rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-64 border border-transparent hover:border-brand-red/20">
-                    <h3 class="font-display text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Atlas Copco Vacuum Solutions</h3>
-                    <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Vacuum Solutions</p>
+                <div class="group bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-48 md:h-64 border border-transparent hover:border-brand-red/20 cursor-default">
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Atlas Copco Vacuum Solutions</h3>
+                    <p class="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Vacuum Solutions</p>
                 </div>
 
                 <!-- Idex Sandpiper -->
-                <div class="group bg-white rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-64 border border-transparent hover:border-brand-red/20">
-                    <h3 class="font-display text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Sandpiper</h3>
-                    <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Pumping Solutions</p>
+                <div class="group bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-48 md:h-64 border border-transparent hover:border-brand-red/20 cursor-default">
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Sandpiper</h3>
+                    <p class="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Pumping Solutions</p>
                 </div>
 
                 <!-- Idex Pulsafeeder -->
-                <div class="group bg-white rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-64 border border-transparent hover:border-brand-red/20">
-                    <h3 class="font-display text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Pulsafeeder</h3>
-                    <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Metering Pumps</p>
+                <div class="group bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-48 md:h-64 border border-transparent hover:border-brand-red/20 cursor-default">
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Pulsafeeder</h3>
+                    <p class="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Metering Pumps</p>
                 </div>
 
                 <!-- Idex Cognito -->
-                <div class="group bg-white rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-64 border border-transparent hover:border-brand-red/20">
-                    <h3 class="font-display text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Cognito</h3>
-                    <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Advanced Solutions</p>
+                <div class="group bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col items-center justify-center text-center h-48 md:h-64 border border-transparent hover:border-brand-red/20 cursor-default">
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-zinc-900 group-hover:text-brand-red transition-colors">Idex Cognito</h3>
+                    <p class="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest mt-2">Advanced Solutions</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- MISSION & VISION -->
-    <section class="py-24 bg-white w-full">
-        <div class="w-full max-w-[1400px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section class="py-12 md:py-24 bg-white w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <!-- Mission -->
-                <div class="bg-zinc-900 rounded-3xl p-10 md:p-14 text-white relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i data-lucide="target" class="w-48 h-48"></i>
+                <div class="bg-zinc-900 rounded-2xl md:rounded-3xl p-8 md:p-14 text-white relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-6 md:p-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="target" class="w-32 h-32 md:w-48 md:h-48"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-brand-red font-bold uppercase tracking-widest mb-4">Our Mission</h3>
-                        <p class="font-display text-2xl md:text-3xl font-bold leading-tight">
+                        <h3 class="text-brand-red font-bold uppercase tracking-widest mb-3 md:mb-4 text-sm md:text-base">Our Mission</h3>
+                        <p class="font-display text-xl md:text-3xl font-bold leading-tight">
                             "To deliver reliable, energy-efficient industrial solutions with unwavering quality and professional integrity."
                         </p>
                     </div>
                 </div>
 
                 <!-- Vision -->
-                <div class="bg-gray-100 rounded-3xl p-10 md:p-14 text-zinc-900 relative overflow-hidden group border border-gray-200">
-                    <div class="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <i data-lucide="eye" class="w-48 h-48"></i>
+                <div class="bg-gray-100 rounded-2xl md:rounded-3xl p-8 md:p-14 text-zinc-900 relative overflow-hidden group border border-gray-200">
+                    <div class="absolute top-0 right-0 p-6 md:p-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i data-lucide="eye" class="w-32 h-32 md:w-48 md:h-48"></i>
                     </div>
                     <div class="relative z-10">
-                        <h3 class="text-brand-red font-bold uppercase tracking-widest mb-4">Our Vision</h3>
-                        <p class="font-display text-2xl md:text-3xl font-bold leading-tight">
+                        <h3 class="text-brand-red font-bold uppercase tracking-widest mb-3 md:mb-4 text-sm md:text-base">Our Vision</h3>
+                        <p class="font-display text-xl md:text-3xl font-bold leading-tight">
                             "To become India’s most trusted industrial engineering partner, setting benchmarks in reliability and service excellence."
                         </p>
                     </div>
@@ -409,28 +427,27 @@
     </section>
 
     <!-- CTA SECTION -->
-    <section class="py-24 bg-zinc-950 w-full relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-zinc-950 w-full relative overflow-hidden">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-red/10 via-zinc-950/50 to-zinc-950"></div>
         </div>
-        <div class="w-full max-w-[1400px] mx-auto px-6 relative z-10 text-center">
-            <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-8">Let’s Build Reliable Solutions Together</h2>
-            <p class="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">Ready to upgrade your industrial infrastructure? Connect with our experts for a personalized consultation.</p>
-            <a href="contact.html" class="px-10 py-4 bg-brand-red hover:bg-red-700 text-white font-bold rounded-full transition-all shadow-[0_0_40px_-10px_rgba(255,0,56,0.5)] hover:shadow-[0_0_60px_-10px_rgba(255,0,56,0.6)]">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6 relative z-10 text-center">
+            <h2 class="font-display text-2xl md:text-5xl font-bold text-white mb-6 md:mb-8 leading-tight">Let’s Build Reliable<br>Solutions Together</h2>
+            <p class="text-zinc-400 text-base md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">Ready to upgrade your industrial infrastructure? Connect with our experts for a personalized consultation.</p>
+            <a href="contact.html" class="px-8 md:px-10 py-4 bg-brand-red hover:bg-red-700 text-white font-bold rounded-full transition-all shadow-[0_0_40px_-10px_rgba(255,0,56,0.5)] hover:shadow-[0_0_60px_-10px_rgba(255,0,56,0.6)] inline-block">
                 Get in Touch
             </a>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-zinc-950 text-white pt-20 pb-10 border-t border-zinc-800 w-full">
-        <!-- Replaced container with w-full max-w-[1400px] -->
-        <div class="w-full max-w-[1400px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-1 md:col-span-1">
+    <footer class="bg-zinc-950 text-white pt-12 md:pt-20 pb-8 md:pb-10 border-t border-zinc-800 w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
+                <div class="col-span-1 md:col-span-1 lg:col-span-1">
                     <div class="flex items-center mb-6">
-                        <div class="font-display font-black text-3xl tracking-tighter text-white">TORR</div>
-                        <div class="ml-2 text-sm font-medium border-l-2 pl-2 border-brand-red tracking-wide uppercase text-zinc-400">Engineering</div>
+                        <div class="font-display font-black text-2xl md:text-3xl tracking-tighter text-white">TORR</div>
+                        <div class="ml-2 text-xs md:text-sm font-medium border-l-2 pl-2 border-brand-red tracking-wide uppercase text-zinc-400">Engineering</div>
                     </div>
                     <p class="text-zinc-500 text-sm leading-relaxed mb-6">
                         Leading provider of industrial vacuum, fluid transfer, and metering solutions. 
@@ -438,48 +455,45 @@
                     </p>
                      <div class="flex space-x-4">
                         <a href="https://www.linkedin.com/company/torr-engrg/" target="_blank" class="p-2 bg-white/5 rounded-full hover:bg-brand-red transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                        
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Quick Links</h4>
+                    <h4 class="font-bold text-base md:text-lg mb-4 md:mb-6 text-white">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="index.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Home</a></li>
-                        <li><a href="about.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">About</a></li>
-                        <li><a href="partners.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Our Partners</a></li>
-                        <li><a href="contact.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Contact</a></li>
+                        <li><a href="index.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide block py-1">Home</a></li>
+                        <li><a href="about.html" class="text-brand-red font-bold transition-colors text-sm uppercase tracking-wide block py-1">About</a></li>
+                        <li><a href="partners.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide block py-1">Our Partners</a></li>
+                        <li><a href="contact.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide block py-1">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Our Solutions</h4>
+                    <h4 class="font-bold text-base md:text-lg mb-4 md:mb-6 text-white">Our Solutions</h4>
                     <ul class="space-y-3 text-sm text-zinc-400">
-                        <li><a href="atlas-copco-vacuum-solutions.html" class="hover:text-white transition-colors">Vacuum Solutions</a></li>
-                        <li><a href="idex-sandpiper.html" class="hover:text-white transition-colors">Idex Sandpiper</a></li>
-                        <li><a href="idex-pulsafeeder.html" class="hover:text-white transition-colors">Idex Pulsafeeder</a></li>
-                        <li><a href="idex-cognito.html" class="hover:text-white transition-colors">Idex Cognito</a></li>
+                        <li><a href="atlas-copco-vacuum-solutions.html" class="hover:text-white transition-colors block py-1">Vacuum Solutions</a></li>
+                        <li><a href="idex-sandpiper.html" class="hover:text-white transition-colors block py-1">Idex Sandpiper</a></li>
+                        <li><a href="idex-pulsafeeder.html" class="hover:text-white transition-colors block py-1">Idex Pulsafeeder</a></li>
+                        <li><a href="idex-cognito.html" class="hover:text-white transition-colors block py-1">Idex Cognito</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Contact Us</h4>
+                    <h4 class="font-bold text-base md:text-lg mb-4 md:mb-6 text-white">Contact Us</h4>
                     <a href="tel:+919606911699" class="block text-xl font-bold text-brand-red mb-2">+91 96069 11699</a>
-                    <a href="mailto:contact@torr.co.in" class="text-zinc-400 hover:text-white transition-colors">contact@torr.co.in</a>
+                    <a href="mailto:contact@torr.co.in" class="text-zinc-400 hover:text-white transition-colors break-all">contact@torr.co.in</a>
                 </div>
             </div>
-                </div>
-            </div>
-            <div class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm">
+            <div class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm text-center md:text-left">
                 <p>© 2026 TORR Engineering. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a class="hover:text-white transition-colors">Terms of Service</a>
+                    <a class="hover:text-white transition-colors cursor-pointer">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors cursor-pointer">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- WHATSAPP BUTTON -->
-    <a href="https://wa.me/919606911699" target="_blank" rel="noreferrer" class="fixed bottom-8 right-8 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-110 flex items-center justify-center">
-        <i data-lucide="message-circle" class="w-8 h-8 fill-current"></i>
+    <a href="https://wa.me/919606911699" target="_blank" rel="noreferrer" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3 md:p-4 rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-90 flex items-center justify-center" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" class="w-6 h-6 md:w-8 md:h-8 fill-current"></i>
     </a>
 
     <!-- SCRIPTS -->
@@ -491,25 +505,24 @@
         // Navbar Logic
         // -------------------
         const navbar = document.getElementById('navbar');
-        // Logo elements 
         const logoText = document.getElementById('logo-text');
         const logoSub = document.getElementById('logo-sub');
         const navLinks = document.querySelectorAll('.nav-link');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 20) {
                 // Scrolled State
-                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'py-3', 'border-transparent');
-                navbar.classList.remove('bg-transparent', 'py-5', 'border-white/10');
+                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'border-transparent');
+                navbar.classList.remove('bg-transparent', 'md:py-5', 'py-3', 'border-white/10');
+                navbar.classList.add('py-2', 'md:py-3');
                 
                 logoSub.classList.remove('text-zinc-100', 'border-brand-red');
                 logoSub.classList.add('text-zinc-800', 'border-zinc-300');
                 
                 navLinks.forEach(link => {
-                    // Check if it's the active "About Us" link to preserve its red color
                     if(link.getAttribute('href') === 'about.html') {
-                        // Already red, no change needed for text color base
+                        // Keep active state
                     } else {
                         link.classList.remove('text-white', 'hover:text-brand-red');
                         link.classList.add('text-zinc-800', 'hover:text-brand-red');
@@ -521,16 +534,15 @@
 
             } else {
                 // Top State
-                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'py-3', 'border-transparent');
-                navbar.classList.add('bg-transparent', 'py-5', 'border-white/10');
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'border-transparent', 'py-2', 'md:py-3');
+                navbar.classList.add('bg-transparent', 'md:py-5', 'py-3', 'border-white/10');
                 
                 logoSub.classList.add('text-zinc-100', 'border-brand-red');
                 logoSub.classList.remove('text-zinc-800', 'border-zinc-300');
                 
                 navLinks.forEach(link => {
                     if(link.getAttribute('href') === 'about.html') {
-                        // Keep distinct active color if desired, or revert to white
-                        // For transparency, usually white looks best
+                        // Keep active state
                     } else {
                         link.classList.add('text-white', 'hover:text-brand-red');
                         link.classList.remove('text-zinc-800', 'hover:text-brand-red');
@@ -549,9 +561,26 @@
         const closeMenuBtn = document.getElementById('close-menu-btn');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('translate-x-full');
-            mobileMenu.classList.toggle('translate-x-0');
+            const isClosed = mobileMenu.classList.contains('translate-x-full');
+            if(isClosed) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('translate-x-0');
+                document.body.style.overflow = 'auto';
+            }
         }
+        
+        // Close menu when clicking links
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('translate-x-full');
+                 mobileMenu.classList.remove('translate-x-0');
+                 document.body.style.overflow = 'auto';
+            });
+        });
 
         mobileMenuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
