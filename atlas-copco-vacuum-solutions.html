@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Copco Vacuum | TORR Engineering</title>
+    <meta name="description" content="Authorized Dealer for Atlas Copco Vacuum Solutions. GHS VSD+, GVS, Liquid Ring, and Dry Vacuum Pumps.">
+    
+    <!-- Fonts: Inter & Poppins for premium feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    display: ['Poppins', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#FF0038', // Specific Brand Red
+                            dark: '#111111',
+                            gray: '#F5F5F7',
+                            blue: '#0078bf' // Atlas Copco Blue
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px -5px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 20px 40px -10px rgba(0, 0, 0, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 4px; }
+        
+        /* Dropdown Animation */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Product Card Transition */
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-zinc-900 font-sans antialiased overflow-x-hidden w-full">
+
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-50 py-4 bg-white shadow-md border-b border-gray-100 transition-all duration-300">
+        <div class="w-full max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center group cursor-pointer gap-3">
+                <div class="flex flex-col">
+                    <div id="logo-text" class="flex items-center">
+                        <img src="logo.png" alt="TORR Logo" class="h-8 md:h-10 w-auto object-contain">
+                    </div>
+                </div>
+                <div id="logo-sub" class="hidden sm:block ml-2 text-sm md:text-base font-bold border-l-2 pl-2 tracking-wide uppercase text-black border-brand-red">
+                    Engineering
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="nav-link text-sm font-semibold uppercase tracking-wide text-black hover:text-brand-red transition-colors duration-200">Home</a>
+                <a href="about.html" class="nav-link text-sm font-semibold uppercase tracking-wide text-black hover:text-brand-red transition-colors duration-200">About Us</a>
+                <a href="partners.html" class="nav-link text-sm font-semibold uppercase tracking-wide text-black hover:text-brand-red transition-colors duration-200">Our Brands</a>
+                
+                <div class="relative group py-4">
+                    <button class="nav-link flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-brand-red hover:text-red-700 transition-colors duration-200">
+                        Products <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="dropdown-menu absolute top-full left-0 w-72 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden pt-2">
+                        <div class="py-2">
+                            <a href="atlas-copco-vacuum-solutions.html" class="block px-6 py-3 text-sm text-brand-red font-bold bg-gray-50 transition-colors border-b border-gray-50">Atlas Copco Vacuum Solutions</a>
+                            <a href="idex-sandpiper.html" class="block px-6 py-3 text-sm text-zinc-600 hover:bg-gray-50 hover:text-brand-red transition-colors border-b border-gray-50">Idex Sandpiper</a>
+                            <a href="idex-pulsafeeder.html" class="block px-6 py-3 text-sm text-zinc-600 hover:bg-gray-50 hover:text-brand-red transition-colors border-b border-gray-50">Idex Pulsafeeder</a>
+                            <a href="idex-cognito.html" class="block px-6 py-3 text-sm text-zinc-600 hover:bg-gray-50 hover:text-brand-red transition-colors">Idex Cognito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="nav-link text-sm font-semibold uppercase tracking-wide text-black hover:text-brand-red transition-colors duration-200">Contact</a>
+   
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-btn" class="p-2 text-black transition-colors duration-300">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full pt-24 px-8 space-y-6 relative overflow-y-auto">
+                <button id="close-menu-btn" class="absolute top-6 right-6 text-black p-2">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+                <a href="index.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Home</a>
+                <a href="about.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">About Us</a>
+                <a href="partners.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Our Brands</a>
+                <div class="pb-4 border-b border-zinc-100">
+                    <p class="text-sm font-bold text-zinc-400 uppercase mb-4 tracking-wider">Products</p>
+                    <a href="atlas-copco-vacuum-solutions.html" class="block text-lg font-medium text-brand-red mb-3 pl-4 border-l-2 border-brand-red">Atlas Copco Vacuum Solutions</a>
+                    <a href="idex-sandpiper.html" class="block text-lg font-medium text-zinc-800 mb-3 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Sandpiper</a>
+                    <a href="idex-pulsafeeder.html" class="block text-lg font-medium text-zinc-800 mb-3 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Pulsafeeder</a>
+                    <a href="idex-cognito.html" class="block text-lg font-medium text-zinc-800 pl-4 border-l-2 border-transparent hover:border-brand-red">Idex Cognito</a>
+                </div>
+                <a href="contact.html" class="mobile-link text-xl font-bold text-zinc-900 border-b border-zinc-100 pb-4">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-white border-b border-gray-200">
+        <div class="w-full max-w-[1400px] mx-auto px-6 text-center">
+            <div class="inline-block mb-4">
+                <span class="py-1 px-3 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-widest border border-brand-blue/20">Authorized Dealer</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6">
+                Atlas Copco Vacuum
+            </h1>
+            <p class="text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+                The leading innovator in industrial vacuum technology. From oil-sealed rotary vanes to intelligent dry screw pumps and liquid ring systems.
+            </p>
+        </div>
+    </header>
+
+    <!-- PRODUCT GRID -->
+    <section class="py-20 w-full">
+        <div class="w-full max-w-[1400px] mx-auto px-6">
+            
+            <!-- Category 1: Oil-Injected Rotary Screw -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Oil-Injected Rotary Screw Pumps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 1. GHS VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/1.png" alt="GHS VSD+" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">GHS VSD+ Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Oil-Injected Rotary Screw with VSD Technology. Intelligent vacuum for energy savings.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">350 - 5400 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('GHS VSD+ Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 2. GHS VSD+ New Gen -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/2.png" alt="GHS VSD+ New Gen" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">GHS VSD+ (Next Gen)</h3>
+                            <p class="text-zinc-600 text-sm mb-4">New Gen Oil-Injected Rotary Screw with HPM Motor & VSD. Superior efficiency.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">1402 - 2002 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('GHS VSD+ Next Gen')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Oil Sealed Rotary Vane -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Oil Sealed Rotary Vane Pumps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 3. GVS A -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/3.png" alt="GVS A Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">GVS A Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Oil-sealed Single Stage Rotary Vane. Robust and reliable for general industry.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">16 - 630 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('GVS A Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 4. GVS VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/4.png" alt="GVS VSD+ Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">GVS VSD+ Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Oil-sealed Single Stage Rotary Vane with Built-in VSD. Compact and efficient.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">80 - 400 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('GVS VSD+ Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 5. GVD -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/5.png" alt="GVD Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">GVD Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Oil-sealed Double Stage Rotary Vane. High ultimate vacuum for R&D.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">17 - 255 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('GVD Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Oil Free Dry Vacuum Pumps -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Oil Free Dry Vacuum Pumps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 6. DZS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/6.png" alt="DZS Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DZS Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry SS mono claw. Corrosion resistant stainless steel claws.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">65 - 300 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DZS Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 7. DZS VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/7.png" alt="DZS VSD+ Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DZS VSD+ Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry SS Claw with Built-in VSD. Efficient and controllable.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">100 - 400 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DZS VSD+ Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 8. DSS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/8.png" alt="DSS Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DSS Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry scroll vacuum pump. Clean and quiet operation.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">65 - 100 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DSS Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Dry Screw & Multi Claw -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Dry Screw & Multi Claw</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 9. DWS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/9.png" alt="DWS Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DWS Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry Screw Fixed Speed. Harsh industrial application pump.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">200 - 500 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DWS Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 10. DZM VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/10.png" alt="DZM VSD+ Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DZM VSD+ Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry SS Multi Claw with Built-in VSD. High flow dry vacuum.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">600 - 1200 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DZM VSD+ Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 11. DWS VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/11.png" alt="DWS VSD+ Series" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DWS VSD+ Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry Screw with Built-in VSD. Intelligent screw pump.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">450 - 750 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DWS VSD+ Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 5: Boosters -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Vacuum Mechanical Boosters</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 12. ZRS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/12.png" alt="ZRS" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">ZRS Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry Vacuum Booster. High pumping speed amplification.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">250 - 4200 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('ZRS Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                    <!-- 13. DRB -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/13.png" alt="DRB" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">DRB Series</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Dry Vacuum Booster. Compact and efficient.</p>
+                            <div class="flex items-center gap-2 mb-6 mt-auto">
+                                <i data-lucide="gauge" class="w-4 h-4 text-brand-blue"></i>
+                                <span class="text-xs font-bold uppercase tracking-wide text-zinc-500">250 - 3000 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('DRB Series')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 6: Liquid Ring -->
+            <div class="mb-12">
+                <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Liquid Ring Vacuum Pumps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 14. LRP VSD+ -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 p-4 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/14.png" alt="LRP VSD+" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-display text-lg font-bold text-zinc-900 mb-2">LRP VSD+ Series</h3>
+                            <p class="text-zinc-600 text-xs mb-3">Intelligent Liquid Ring with VSD. Water recovery.</p>
+                            <div class="flex items-center gap-1 mb-4 mt-auto">
+                                <span class="text-[10px] font-bold uppercase tracking-wide text-zinc-500">700 - 1000 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('LRP VSD+ Series')" class="w-full py-2 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg text-sm shadow-md">Enquire</button>
+                        </div>
+                    </div>
+                     <!-- 15. AWC/AWS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 p-4 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/15.png" alt="AWC/AWS" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-display text-lg font-bold text-zinc-900 mb-2">AWC & AWS A</h3>
+                            <p class="text-zinc-600 text-xs mb-3">Single Stage Liquid Vacuum Pump. Flat port design.</p>
+                            <div class="flex items-center gap-1 mb-4 mt-auto">
+                                <span class="text-[10px] font-bold uppercase tracking-wide text-zinc-500">25 - 1400 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('AWC A & AWS A Series')" class="w-full py-2 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg text-sm shadow-md">Enquire</button>
+                        </div>
+                    </div>
+                     <!-- 16. AWS -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 p-4 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/16.png" alt="AWS" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-display text-lg font-bold text-zinc-900 mb-2">AWS Series</h3>
+                            <p class="text-zinc-600 text-xs mb-3">Single Stage Liquid Ring. Large capacity.</p>
+                            <div class="flex items-center gap-1 mb-4 mt-auto">
+                                <span class="text-[10px] font-bold uppercase tracking-wide text-zinc-500">180 - 5500 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('AWS Series')" class="w-full py-2 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg text-sm shadow-md">Enquire</button>
+                        </div>
+                    </div>
+                     <!-- 17. AWD -->
+                    <div class="product-card bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col h-full group">
+                        <div class="h-48 p-4 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/17.png" alt="AWD" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-display text-lg font-bold text-zinc-900 mb-2">AWD Series</h3>
+                            <p class="text-zinc-600 text-xs mb-3">Two Stage Liquid Ring Vacuum Pump.</p>
+                            <div class="flex items-center gap-1 mb-4 mt-auto">
+                                <span class="text-[10px] font-bold uppercase tracking-wide text-zinc-500">200 - 4510 m³/h</span>
+                            </div>
+                            <button onclick="openEnquiryModal('AWD Series')" class="w-full py-2 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg text-sm shadow-md">Enquire</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 7: Controller -->
+            <div class="mb-12">
+                 <h2 class="font-display text-2xl font-bold text-zinc-900 border-l-4 border-brand-blue pl-3 mb-6">Controllers</h2>
+                 <div class="flex justify-start">
+                    <!-- 18. HEX@ -->
+                    <div class="product-card w-full max-w-sm bg-white rounded-2xl shadow-card hover:shadow-card-hover border border-gray-100 overflow-hidden flex flex-col group">
+                        <div class="h-64 p-8 flex items-center justify-center bg-gray-50 group-hover:bg-white transition-colors">
+                            <img src="images/atlas-copco-vacuum-solutions/18.png" alt="HEX@" class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-display text-xl font-bold text-zinc-900 mb-2">HEX@ Controller</h3>
+                            <p class="text-zinc-600 text-sm mb-4">Industry 4.0 Vacuum Controller. Multi Pump Central Control.</p>
+                            <button onclick="openEnquiryModal('HEX@ Controller')" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2">Enquire Now</button>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white pt-20 pb-10 border-t border-zinc-800">
+        <div class="w-full max-w-[1400px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="flex items-center mb-6">
+                        <div class="font-display font-black text-3xl tracking-tighter text-white">TORR</div>
+                        <div class="ml-2 text-sm font-medium border-l-2 pl-2 border-brand-red tracking-wide uppercase text-zinc-400">Engineering</div>
+                    </a>
+                    <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+                        Leading provider of industrial vacuum, fluid transfer, and metering solutions. 
+                        Partnering with Atlas Copco, Idex Sandpiper, and Idex Pulsafeeder.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/company/torr-engrg/" target="_blank" class="p-2 bg-white/5 rounded-full hover:bg-brand-red transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                       
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Home</a></li>
+                        <li><a href="about.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">About Us</a></li>
+                        <li><a href="partners.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Our Brands</a></li>
+                        <li><a href="contact.html" class="text-zinc-400 hover:text-brand-red transition-colors text-sm uppercase tracking-wide">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Our Solutions</h4>
+                    <ul class="space-y-3 text-sm text-zinc-400">
+                        <li><a href="atlas-copco-vacuum-solutions.html" class="hover:text-white transition-colors">Vacuum Solutions</a></li>
+                        <li><a href="idex-sandpiper.html" class="hover:text-white transition-colors">Idex Sandpiper</a></li>
+                        <li><a href="idex-pulsafeeder.html" class="hover:text-white transition-colors">Idex Pulsafeeder</a></li>
+                        <li><a href="idex-cognito.html" class="hover:text-white transition-colors">Idex Cognito</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Contact Us</h4>
+                    <a href="tel:+919606911699" class="block text-xl font-bold text-brand-red mb-2">+91 96069 11699</a>
+                    <a href="mailto:contact@torr.co.in" class="text-zinc-400 hover:text-white transition-colors">contact@torr.co.in</a>
+                </div>
+            </div>
+            <div class="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm">
+                <p>© 2026 TORR Engineering. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP ENQUIRY MODAL -->
+    <div id="enquiry-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeEnquiryModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl animate-fade-in-up">
+            <button onclick="closeEnquiryModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-zinc-900 transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="message-circle" class="w-8 h-8 fill-current"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-zinc-900">Get Quote via WhatsApp</h3>
+                <p class="text-zinc-500 mt-2 text-sm">You are enquiring about:<br><strong id="modal-product-name" class="text-brand-red text-lg">Product Name</strong></p>
+            </div>
+            
+            <form onsubmit="handleWhatsAppSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-1">Your Name</label>
+                    <input type="text" id="wa-name" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-zinc-700 mb-1">Phone Number</label>
+                    <input type="tel" id="wa-phone" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="+91 99999 99999">
+                </div>
+                <button type="submit" class="w-full py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mt-4 hover:-translate-y-1">
+                    Send Enquiry on WhatsApp <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        lucide.createIcons();
+
+        // -------------------
+        // Mobile Menu Logic
+        // -------------------
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+            mobileMenu.classList.toggle('translate-x-0');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // -------------------
+        // Navbar Shadow Logic
+        // -------------------
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.remove('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.add('shadow-md');
+            }
+        });
+
+        // -------------------
+        // WhatsApp Modal Logic
+        // -------------------
+        const modal = document.getElementById('enquiry-modal');
+        const modalProductName = document.getElementById('modal-product-name');
+        let selectedProduct = '';
+
+        function openEnquiryModal(productName) {
+            selectedProduct = productName;
+            modalProductName.innerText = productName;
+            modal.classList.remove('hidden');
+        }
+
+        function closeEnquiryModal() {
+            modal.classList.add('hidden');
+        }
+
+        function handleWhatsAppSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('wa-name').value;
+            const phone = document.getElementById('wa-phone').value;
+            
+            const message = `Hello TORR Engineering,\r\n\r\nI am interested in: *${selectedProduct}* (Atlas Copco).\r\n\r\nPlease provide technical details and pricing.\r\n\r\n*My Details:*\r\nName: ${name}\r\nPhone: ${phone}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/919606911699?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            closeEnquiryModal();
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeEnquiryModal();
+        });
+    </script>
+</body>
+</html>
